@@ -130,13 +130,14 @@ def test_stream(url, output_file, tv_name, i, total):
         width, height, get_time = get_resolution_and_download_time(i, url)
 
         print("get_time:" + get_time + " =======================================")
-        # 剔除goodiptv直播源，因它不是开放的静态直播源
+        # 剔除 goodiptv jlntv 直播源，因它不是开放的静态直播源
         # 剔除获取视频分辨率和下载速度耗时超过2秒的直播源
         if (
             width is not None
             and height is not None
             and get_time is not None
             and url.find("goodiptv") == -1
+            and url.find("jlntv") == -1
             and float(get_time) < 2.0
         ):
             with open(output_file, "a", encoding="utf-8") as f:
@@ -194,7 +195,16 @@ def main(playlist_file, m3u8_file_path):
                         url = lines[i + 1].strip()
                         print(f"read file url: {url} TV Name: {tv_name}")
                         idx = idx + 1
-                        urls.append((url, tv_name, idx))
+                                                
+                        isExist = 0
+                        for url_1, tv_name_1, idx_1 in urls:
+                            if url_1==url :
+                                isExist = 1
+                            
+                            
+                        if isExist == 0 :
+                            urls.append((url, tv_name, idx))
+                        
 
         else:  # 处理txt格式的直播源列表
             file_path = os.path.join(playlist_file, file_name)
@@ -217,12 +227,29 @@ def main(playlist_file, m3u8_file_path):
                         for j in range(urlNum):
                             print(f"read file url: {urlArr[j]} TV Name: {tv_name}")
                             idx = idx + 1
-                            urls.append((urlArr[j], tv_name, idx))
+                            
+                            isExist = 0
+                            for url_1, tv_name_1, idx_1 in urls:
+                                if url_1==urlArr[j] :
+                                    isExist = 1
+                                
+                                
+                            if isExist == 0 :
+                                urls.append((urlArr[j], tv_name, idx))
+                            
 
                     else:
                         print(f"read file url: {url} TV Name: {tv_name}")
                         idx = idx + 1
-                        urls.append((url, tv_name, idx))
+                        
+                        isExist = 0
+                        for url_1, tv_name_1, idx_1 in urls:
+                            if url_1==url :
+                                isExist = 1
+                            
+                        if isExist == 0 :
+                            urls.append((url, tv_name, idx))
+                        
 
     urlLen = len(urls)
     random.shuffle(urls)
