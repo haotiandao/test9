@@ -252,6 +252,7 @@ def main(playlist_file, m3u8_file_path):
                         
 
     urlLen = len(urls)
+    # 随机排序下，以便并发测试时，不要同时测试同一个ip地址的直播源
     random.shuffle(urls)
     new_idx = 0
 
