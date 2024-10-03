@@ -12,7 +12,7 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-max_workers = 6  # 线程数太多，容易被屏蔽请求
+max_workers = 12  # 线程数太多，容易被屏蔽请求
 
 timeout = 4  # 超时时间太短可能没法获取视频分辨率
 
@@ -280,7 +280,7 @@ def main(playlist_file, m3u8_file_path):
                 idx = idx + 1
                 new_urls.append((url, tv_name, idx))
 
-    new_sort_urls = sorted(new_urls, key=lambda d: d[0])  # 按照url排序
+    new_sort_urls = sorted(new_urls, key=lambda d: d[1])  # 按照 name 排序
 
     # 再新建一个m3u文件来存储排序后的
     new_output_file = (
