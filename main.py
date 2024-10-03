@@ -141,7 +141,7 @@ def test_stream(url, output_file, tv_name, i, total):
             and float(get_time) < 2.0
         ):
             with open(output_file, "a", encoding="utf-8") as f:
-                f.write(f"#EXTINF:-1,{tv_name}_{width}x{height}_{get_time}\n")
+                f.write(f"#EXTINF:-1,{tv_name}___{width}x{height}_{get_time}\n")
                 f.write(url + "\n")
             print(
                 f"TV Name: {tv_name}_{width}x{height}_{get_time} ==========================="
@@ -280,7 +280,7 @@ def main(playlist_file, m3u8_file_path):
                 idx = idx + 1
                 new_urls.append((url, tv_name, idx))
 
-    new_sort_urls = sorted(new_urls, key=lambda d: d[1])  # 按照 name 排序
+    new_sort_urls = sorted(new_urls, key=lambda d:(d[1],d[0]))  # 按照 name url 排序
 
     # 再新建一个m3u文件来存储排序后的
     new_output_file = (
