@@ -152,14 +152,22 @@ def test_stream(url, output_file, tv_name, i, total):
         print(f"Failed to test URL {url}: {e}")
 
 
-def get_tv_name(line):
+def get_tv_name(line, isHandle):
     match = re.search(r'tvg-name="([^"]+)"', line)
     if match:
-        return match.group(1)
+        if isHandle:
+            new_parts = match.group(1).strip().split("_");
+            return new_parts[0]
+        else:
+            return match.group(1).strip()
     else:
         parts = line.split(",")
         if len(parts) > 1:
-            return parts[1].strip()
+            if isHandle:
+                new_parts = parts[1].strip().split("_");
+                return new_parts[0]
+            else:
+                return parts[1].strip();
         else:
             return "Unknown"
 
@@ -190,7 +198,7 @@ def main(playlist_file, m3u8_file_path):
             total = len(lines)
             for i in range(total):
                 if lines[i].startswith("#EXTINF:-1"):
-                    tv_name = get_tv_name(lines[i])
+                    tv_name = get_tv_name(lines[i], True)
                     if i + 1 <= total and lines[i + 1].startswith("http"):
                         url = lines[i + 1].strip()
                         print(f"read file url: {url} TV Name: {tv_name}")
@@ -273,7 +281,7 @@ def main(playlist_file, m3u8_file_path):
     idx = 0
     for i in range(total):
         if lines[i].startswith("#EXTINF:-1"):
-            tv_name = get_tv_name(lines[i])
+            tv_name = get_tv_name(lines[i], False)
             if i + 1 <= total and lines[i + 1].startswith("http"):
                 url = lines[i + 1].strip()
                 # print(f"read file url: {url} TV Name: {tv_name}")
