@@ -12,7 +12,7 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-max_workers = 12  # 线程数太多，容易被屏蔽请求
+max_workers = 6  # 线程数太多，容易被屏蔽请求
 
 timeout = 4  # 超时时间太短可能没法获取视频分辨率
 
@@ -284,11 +284,12 @@ def main(playlist_file, m3u8_file_path):
             tv_name = get_tv_name(lines[i], False)
             if i + 1 <= total and lines[i + 1].startswith("http"):
                 url = lines[i + 1].strip()
+                host_name = url.split("/")[0]
                 # print(f"read file url: {url} TV Name: {tv_name}")
                 idx = idx + 1
-                new_urls.append((url, tv_name, idx))
+                new_urls.append((url, host_name, tv_name, idx))
 
-    new_sort_urls = sorted(new_urls, key=lambda d:(d[1],d[0]))  # 按照 name url 排序
+    new_sort_urls = sorted(new_urls, key=lambda d:(d[1],d[2]))  # 按照 host_name tv_name 排序
 
     # 再新建一个m3u文件来存储排序后的
     new_output_file = (
@@ -299,7 +300,7 @@ def main(playlist_file, m3u8_file_path):
         f.write("#EXTM3U\n")
 
     with open(new_output_file, "a", encoding="utf-8") as f:
-        for url, tv_name, idx in new_sort_urls:
+        for url, host_name, tv_name, idx in new_sort_urls:
             f.write(f"#EXTINF:-1,{tv_name}\n")
             f.write(url + "\n")
 
