@@ -12,7 +12,10 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-filter_url_arr = ['goodiptv','jlntv','zjrtv.vip','epg.pw'] # 剔除一些特定的直播源，因它们不是开放的静态直播源
+filter_url_arr = ['goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
+'gcalic.v.myalicdn.com/gc/','gctxyc.liveplay.myqcloud.com','bizcommon.alicdn.com'] # 剔除一些特定的直播源，因它们不是开放的静态直播源，或者其他一些不想要的
+
+filter_url_arr_1 = ['live.metshop.top'] # 针对斗鱼，虎牙的直播源做特殊过滤，仅保留电影相关的
 
 max_workers = 12  # 测试直播源的线程数量。线程数太多，容易被屏蔽请求
 
@@ -136,6 +139,8 @@ def test_stream(url, output_file, tv_name, i, total):
         # 剔除下载2秒视频流，耗时超过xx秒的直播源
         if (width is None or height is None or get_time is None):
             print(f"TV Name: {tv_name} URL: {url} 未获取到分辨率，剔除掉")
+        elif (float(width) > 2000):
+            print(f"TV Name: {tv_name} URL: {url} 分辨率宽度超过2000，容易卡顿，剔除掉")
         elif (float(get_time) > download_video_use_time):
             print(f"TV Name: {tv_name} URL: {url} 获取分辨率超时，剔除掉")
         elif (width is not None
@@ -202,17 +207,7 @@ def main(playlist_file, m3u8_file_path):
                         url = lines[i + 1].strip()
                         print(f"read file url: {url} TV Name: {tv_name}")
                         idx = idx + 1
-                                                
-                        isExist = 0
-                        for url_1, tv_name_1, idx_1 in urls:
-                            if url_1==url :
-                                isExist = 1
-                            for url_2 in filter_url_arr:
-                                if url.find(url_2) != -1 :
-                                    isExist = 1
-                            
-                        if isExist == 0 :
-                            urls.append((url, tv_name, idx))
+                        urls.append((url, tv_name, idx))
                         
 
         else:  # 处理txt格式的直播源列表
@@ -232,35 +227,42 @@ def main(playlist_file, m3u8_file_path):
                         for j in range(urlNum):
                             print(f"read file url: {urlArr[j]} TV Name: {tv_name}")
                             idx = idx + 1
-                            
-                            isExist = 0
-                            for url_1, tv_name_1, idx_1 in urls:
-                                if url_1==urlArr[j] :
-                                    isExist = 1
-                                for url_2 in filter_url_arr:
-                                    if urlArr[j].find(url_2) != -1 :
-                                        isExist = 1
-                                
-                            if isExist == 0 :
-                                urls.append((urlArr[j], tv_name, idx))
+                            urls.append((urlArr[j], tv_name, idx))
                             
 
                     else:
                         print(f"read file url: {url} TV Name: {tv_name}")
                         idx = idx + 1
+                        urls.append((url, tv_name, idx))
                         
-                        isExist = 0
-                        for url_1, tv_name_1, idx_1 in urls:
-                            if url_1==url :
-                                isExist = 1
-                            for url_2 in filter_url_arr:
-                                if url.find(url_2) != -1 :
-                                    isExist = 1
-                            
-                        if isExist == 0 :
-                            urls.append((url, tv_name, idx))
-                        
-
+    unique_urls = []
+    new_urls = []
+    idx = 0
+    for url_1, tv_name_1, idx_1 in urls:
+        isExist = 1
+        
+        # 过滤重复的url
+        if url_1 not in unique_urls:
+            isExist = 0
+            unique_urls.append(url_1);
+            
+        # 过滤不想要的url
+        for url_2 in filter_url_arr:
+            if url_1.find(url_2) != -1 :
+                isExist = 1
+                
+        # 过滤不想要的url，专门针对斗鱼，虎牙      
+        for url_2 in filter_url_arr_1:
+            if url_1.find(url_2) != -1 and tv_name_1.find("电影")==-1:
+                isExist = 1
+                
+        
+        if isExist == 0 :
+            new_urls.append((url_1, tv_name_1, idx))
+        
+    urls = new_urls;
+    new_urls = []
+    
     urlLen = len(urls)
     # 随机排序下，以便并发测试时，不要同时测试同一个ip地址的直播源
     random.shuffle(urls)
