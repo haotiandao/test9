@@ -12,10 +12,17 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-max_workers = 6  # 线程数太多，容易被屏蔽请求
+filter_url_arr = ['goodiptv','jlntv','zjrtv.vip','epg.pw'] # 剔除一些特定的直播源，因它们不是开放的静态直播源
 
-timeout = 4  # 超时时间太短可能没法获取视频分辨率
+max_workers = 12  # 测试直播源的线程数量。线程数太多，容易被屏蔽请求
 
+download_video_time = "4" # 使用ffmpeg下载多少秒直播源的视频时长，时间太短一些国外的源，可能还没发缓冲过来，不建议在调整该值
+
+download_video_length = 200 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有50KB才不卡顿
+
+timeout = int(download_video_time) + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
+
+download_video_use_time = timeout + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
 
 def get_fake_User_Agent():
     ua = UserAgent()
@@ -47,7 +54,7 @@ def get_resolution_and_download_time(i, url):
         cmd.append(url)
         cmd.append("-hide_banner")
         cmd.append("-t")
-        cmd.append("2")  # 将2秒钟的直播视频下载下来
+        cmd.append(download_video_time)  # 将xx秒钟的直播视频下载下来
         cmd.append("-c")
         cmd.append("copy")
         cmd.append(output_file_name)
@@ -68,10 +75,8 @@ def get_resolution_and_download_time(i, url):
             # 删除之前测试直播源存储的视频文件
             os.remove(output_file_name)
 
-            if file_size < 100:
-                print(
-                    f"2秒钟的视频大小没有超过100KB, 播放容易卡顿，故剔除掉 url: {url}"
-                )
+            if file_size < download_video_length:
+                print(f"{download_video_time}秒钟的视频大小没有超过{download_video_length}KB, 播放容易卡顿，故剔除掉 url: {url}")
                 print_time(start_time, 0, 0, url)
                 return None, None, None
 
@@ -85,11 +90,7 @@ def get_resolution_and_download_time(i, url):
                     match = re.search(r"(\d{3,4}x\d{3,4})", cont_arr[j])
                     if match:
                         width_height = match.group(1)
-                        print(
-                            "width_height:"
-                            + width_height
-                            + " ======================================="
-                        )
+                        print("width_height:" + width_height + " =======================================")
                         break
 
             if len(width_height) > 0:
@@ -119,7 +120,7 @@ def get_resolution_and_download_time(i, url):
         if os.path.isfile(output_file_name):
             os.remove(output_file_name)
 
-        # print(f"Failed to get resolution for URL {url}: {e}")
+        print(f"Failed to get resolution for URL {url}: {e}")
         print_time(start_time, 0, 0, url)
         return None, None, None
 
@@ -130,22 +131,22 @@ def test_stream(url, output_file, tv_name, i, total):
         width, height, get_time = get_resolution_and_download_time(i, url)
 
         print("get_time:" + get_time + " =======================================")
-        # 剔除 goodiptv jlntv 直播源，因它不是开放的静态直播源
-        # 剔除获取视频分辨率和下载速度耗时超过2秒的直播源
-        if (
-            width is not None
+       
+        # 剔除获取不到视频分辨率的
+        # 剔除下载2秒视频流，耗时超过xx秒的直播源
+        if (width is None or height is None or get_time is None):
+            print(f"TV Name: {tv_name} URL: {url} 未获取到分辨率，剔除掉")
+        elif (float(get_time) > download_video_use_time):
+            print(f"TV Name: {tv_name} URL: {url} 获取分辨率超时，剔除掉")
+        elif (width is not None
             and height is not None
             and get_time is not None
-            and url.find("goodiptv") == -1
-            and url.find("jlntv") == -1
-            and float(get_time) < 2.0
+            and float(get_time) <= download_video_use_time
         ):
             with open(output_file, "a", encoding="utf-8") as f:
                 f.write(f"#EXTINF:-1,{tv_name}___{width}x{height}_{get_time}\n")
                 f.write(url + "\n")
-            print(
-                f"TV Name: {tv_name}_{width}x{height}_{get_time} ==========================="
-            )
+            print(f"TV Name: {tv_name}_{width}x{height}_{get_time} ===========================")
             print(f"URL: {url}")
 
     except Exception as e:
@@ -188,9 +189,7 @@ def main(playlist_file, m3u8_file_path):
 
         print(f"file_name: {file_name}")
 
-        if file_name.endswith(".m3u") or file_name.endswith(
-            ".m3u8"
-        ):  # 处理m3u、m3u8格式的直播源列表
+        if file_name.endswith(".m3u") or file_name.endswith(".m3u8"):  # 处理m3u、m3u8格式的直播源列表
             file_path = os.path.join(playlist_file, file_name)
             with open(file_path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
@@ -208,7 +207,9 @@ def main(playlist_file, m3u8_file_path):
                         for url_1, tv_name_1, idx_1 in urls:
                             if url_1==url :
                                 isExist = 1
-                            
+                            for url_2 in filter_url_arr:
+                                if url.find(url_2) != -1 :
+                                    isExist = 1
                             
                         if isExist == 0 :
                             urls.append((url, tv_name, idx))
@@ -221,15 +222,11 @@ def main(playlist_file, m3u8_file_path):
 
             total = len(lines)
             for i in range(total):
-                if (
-                    lines[i].find("http:") != -1 or lines[i].find("https:") != -1
-                ) and lines[i].find(",") != -1:
+                if (lines[i].find("http:") != -1 or lines[i].find("https:") != -1) and lines[i].find(",") != -1:
                     arr = lines[i].split(",")
                     tv_name = arr[0].strip()
                     url = arr[1].strip()
-                    if (
-                        url.find("#") != -1
-                    ):  # 兼容txt格式直播源，带有多个直播源地址的情况
+                    if (url.find("#") != -1):  # 兼容txt格式直播源，带有多个直播源地址的情况
                         urlArr = url.split("#")
                         urlNum = len(urlArr)
                         for j in range(urlNum):
@@ -240,7 +237,9 @@ def main(playlist_file, m3u8_file_path):
                             for url_1, tv_name_1, idx_1 in urls:
                                 if url_1==urlArr[j] :
                                     isExist = 1
-                                
+                                for url_2 in filter_url_arr:
+                                    if urlArr[j].find(url_2) != -1 :
+                                        isExist = 1
                                 
                             if isExist == 0 :
                                 urls.append((urlArr[j], tv_name, idx))
@@ -254,6 +253,9 @@ def main(playlist_file, m3u8_file_path):
                         for url_1, tv_name_1, idx_1 in urls:
                             if url_1==url :
                                 isExist = 1
+                            for url_2 in filter_url_arr:
+                                if url.find(url_2) != -1 :
+                                    isExist = 1
                             
                         if isExist == 0 :
                             urls.append((url, tv_name, idx))
