@@ -18,7 +18,7 @@ max_workers = 12  # 测试直播源的线程数量。线程数太多，容易被
 
 download_video_time = "4" # 使用ffmpeg下载多少秒直播源的视频时长，时间太短一些国外的源，可能还没发缓冲过来，不建议在调整该值
 
-download_video_length = 200 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有50KB才不卡顿
+download_video_length = int(download_video_time) * 70 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有70KB才不卡顿
 
 timeout = int(download_video_time) + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
 
