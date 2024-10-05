@@ -1,20 +1,35 @@
 #仅收集电视台名称
 龙华电影
 黑莓电影
-香港国际财经
 靖天电影
 环球电视
-民视新闻
-凤凰卫视资讯
-星空卫视
-纪实人文
 NEWTV超级电影
 CHC动作电影
+CHC家庭影院
+CHC高清电影
+风云剧场
+第一剧场
+兵器科技
+世界地理
+女性时尚
+电视指南
+纪实人文
+NASA
+国家地理
+History历史
+Discovery科学
+民视新闻
+东森新闻
+凤凰资讯
 BBC NEWS
 ABC NEWS
 AL JAZEERA
 CBS NEWS
-国家地理
-History历史
-Discovery科学
-亚洲新闻台
+CNN NEWS
+Sky News
+NHK World
+KBS World
+RT News
+TRT World
+HBO
+CNA
