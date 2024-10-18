@@ -12,18 +12,18 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-filter_url_arr = ['goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
+filter_url_arr = ['stream1.freetv.fun','cnstream.top','goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
 'gcalic.v.myalicdn.com/gc/','gctxyc.liveplay.myqcloud.com','bizcommon.alicdn.com'] # 剔除一些特定的直播源，因它们不是开放的静态直播源，或者其他一些不想要的
 
 filter_url_arr_1 = ['live.metshop.top'] # 针对斗鱼，虎牙的直播源做特殊过滤，仅保留电影相关的
 
-max_workers = 6  # 测试直播源的线程数量。线程数太多，容易被屏蔽请求
+max_workers = 8  # 测试直播源的线程数量。线程数太多，容易被屏蔽请求
 
-download_video_time = "4" # 使用ffmpeg下载多少秒直播源的视频时长，时间太短一些国外的源，可能还没发缓冲过来，不建议在调整该值
+download_video_time = 4 # 使用ffmpeg下载多少秒直播源的视频时长，时间太短一些国外的源，可能还没发缓冲过来，不建议在调整该值
 
-download_video_length = int(download_video_time) * 70 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有70KB才不卡顿
+download_video_length = download_video_time * 70 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有70KB才不卡顿
 
-timeout = int(download_video_time) + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
+timeout = download_video_time + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
 
 download_video_use_time = timeout + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
 
@@ -57,7 +57,7 @@ def get_resolution_and_download_time(i, url):
         cmd.append(url)
         cmd.append("-hide_banner")
         cmd.append("-t")
-        cmd.append(download_video_time)  # 将xx秒钟的直播视频下载下来
+        cmd.append(str(download_video_time))  # 将xx秒钟的直播视频下载下来
         cmd.append("-c")
         cmd.append("copy")
         cmd.append(output_file_name)
