@@ -12,7 +12,7 @@ playlist_file = "playlists/"
 
 m3u8_file_path = "output/"
 
-filter_url_arr = ['stream1.freetv.fun','cnstream.top','goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
+filter_url_arr = ['122.152.202.33','stream1.freetv.fun','cnstream.top','goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
 'gcalic.v.myalicdn.com/gc/','gctxyc.liveplay.myqcloud.com','bizcommon.alicdn.com'] # 剔除一些特定的直播源，因它们不是开放的静态直播源，或者其他一些不想要的
 
 filter_url_arr_1 = ['live.metshop.top'] # 针对斗鱼，虎牙的直播源做特殊过滤，仅保留电影相关的
@@ -27,13 +27,20 @@ timeout = download_video_time + 0.5  # 使用ffmpeg下载{download_video_time}�
 
 download_video_use_time = timeout + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
 
+max_bitrate = 10000  # bitrate高于10000，容易卡顿，故剔除掉
+
+max_fps = 50  # fps高于50，容易卡顿，故剔除掉
+
+max_width = 2000 # 分辨率宽度超过{max_width}，容易卡顿，剔除掉
+
+
 def get_fake_User_Agent():
     ua = UserAgent()
     user_agent = ua.random
     return user_agent
 
 
-def print_time(start_time, width, height, url):
+def get_test_url_time(start_time, width, height, url):
     end_time = time.time()
     get_time = end_time - start_time
     get_time = "{:.3f}".format(get_time)
@@ -57,7 +64,7 @@ def get_resolution_and_download_time(i, url):
         cmd.append(url)
         cmd.append("-hide_banner")
         cmd.append("-t")
-        cmd.append(str(download_video_time))  # 将xx秒钟的直播视频下载下来
+        cmd.append(str(download_video_time))  # 将{download_video_time}秒钟的直播视频下载下来
         cmd.append("-c")
         cmd.append("copy")
         cmd.append(output_file_name)
@@ -77,34 +84,68 @@ def get_resolution_and_download_time(i, url):
 
             # 删除之前测试直播源存储的视频文件
             os.remove(output_file_name)
+            
+            print(f"file_size: {file_size} =======================================")
 
             if file_size < download_video_length:
                 print(f"{download_video_time}秒钟的视频大小没有超过{download_video_length}KB, 播放容易卡顿，故剔除掉 url: {url}")
-                print_time(start_time, 0, 0, url)
+                get_test_url_time(start_time, 0, 0, url)
                 return None, None, None
 
             output_cont = result.stdout
             cont_arr = output_cont.split("\n")
             cont_len = len(cont_arr)
 
+            bitrate = ""
+            bitrateFloat = 0
+            
+            fps = ""
+            fpsInt = 0
+            
             width_height = ""
+            
             for j in range(cont_len):
+                # print(f"##########cont_arr[{j}] result: {cont_arr[j]}")
+                
+                if j == (cont_len - 2):
+                    match = re.search(r"bitrate\=\d{3,4}\.\d{1,4}kbits\/s", cont_arr[j])
+                    if match:
+                        bitrate = match.group(0)
+                        bitrateFloat = float(bitrate.replace("bitrate=","").replace("kbits/s",""))
+                        print(f"bitrate:{bitrateFloat} =======================================")
+                        
                 if cont_arr[j].find("Stream #0:0:") > -1:
+                    match = re.search(r"\d{2}\sfps", cont_arr[j])
+                    if match:
+                        fps = match.group(0)
+                        fpsInt = int(fps.replace(" fps",""))
+                        print(f"fps:{fpsInt} =======================================")
+                       
                     match = re.search(r"(\d{3,4}x\d{3,4})", cont_arr[j])
                     if match:
                         width_height = match.group(1)
-                        print("width_height:" + width_height + " =======================================")
-                        break
-
-            if len(width_height) > 0:
+                        print(f"width_height:{width_height} =======================================")
+                        
+            # 过滤 fps 太高的直播源，容易卡顿
+            if fpsInt > max_fps:
+                print(f"fps:{fpsInt}高于{max_fps}，容易卡顿，故剔除掉 url:{url}")
+                return None, None, None
+                
+            # 过滤 bitrate 太高的直播源，容易卡顿
+            elif bitrateFloat > max_bitrate:
+                print(f"bitrate:{bitrateFloat}高于{max_bitrate}，容易卡顿，故剔除掉 url:{url}")
+                return None, None, None
+                
+            elif len(width_height) > 0:
                 arr = width_height.split("x")
                 width = arr[0]
                 height = arr[1]
 
-                get_time = print_time(start_time, width, height, url)
+                get_time = get_test_url_time(start_time, width, height, url)
                 return width, height, get_time
+            # 没有获取到分辨率的，过滤掉
             else:
-                print_time(start_time, 0, 0, url)
+                get_test_url_time(start_time, 0, 0, url)
                 return None, None, None
 
         else:
@@ -112,7 +153,7 @@ def get_resolution_and_download_time(i, url):
             if os.path.isfile(output_file_name):
                 os.remove(output_file_name)
 
-            print_time(start_time, 0, 0, url)
+            get_test_url_time(start_time, 0, 0, url)
             return None, None, None
 
     except Exception as e:
@@ -124,7 +165,7 @@ def get_resolution_and_download_time(i, url):
             os.remove(output_file_name)
 
         print(f"Failed to get resolution for URL {url}: {e}")
-        print_time(start_time, 0, 0, url)
+        get_test_url_time(start_time, 0, 0, url)
         return None, None, None
 
 
@@ -133,21 +174,22 @@ def test_stream(url, output_file, tv_name, i, total):
     try:
         width, height, get_time = get_resolution_and_download_time(i, url)
 
-        print("get_time:" + get_time + " =======================================")
+        print(f"get_time:{get_time} =======================================")
        
         # 剔除获取不到视频分辨率的
         # 剔除下载2秒视频流，耗时超过xx秒的直播源
         if (width is None or height is None or get_time is None):
             print(f"TV Name: {tv_name} URL: {url} 未获取到分辨率，剔除掉")
-        elif (float(width) > 2000):
-            print(f"TV Name: {tv_name} URL: {url} 分辨率宽度超过2000，容易卡顿，剔除掉")
+            
+        elif (float(width) > max_width):
+            print(f"TV Name: {tv_name} URL: {url} 分辨率宽度超过{max_width}，容易卡顿，剔除掉")
+            
         elif (float(get_time) > download_video_use_time):
             print(f"TV Name: {tv_name} URL: {url} 获取分辨率超时，剔除掉")
+            
         elif (width is not None
             and height is not None
-            and get_time is not None
-            and float(get_time) <= download_video_use_time
-        ):
+            and get_time is not None):
             with open(output_file, "a", encoding="utf-8") as f:
                 f.write(f"#EXTINF:-1,{tv_name}___{width}x{height}_{get_time}\n")
                 f.write(url + "\n")
@@ -251,7 +293,7 @@ def main(playlist_file, m3u8_file_path):
             if url_1.find(url_2) != -1 :
                 isExist = 1
                 
-        # 过滤不想要的url，专门针对斗鱼，虎牙      
+        # 针对斗鱼，虎牙的直播源做特殊过滤，仅保留电影相关的
         for url_2 in filter_url_arr_1:
             if url_1.find(url_2) != -1 and tv_name_1.find("电影")==-1:
                 isExist = 1
