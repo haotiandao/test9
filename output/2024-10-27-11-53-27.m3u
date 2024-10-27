@@ -295,11 +295,11 @@ http://120.77.28.4:8648/douyu.php?id=1377142
 http://maomao.kandiantv.cn/douyu1.php?id=1377142
 #EXTINF:-1,凤冈综合___1920x1080_0.853
 http://live.fgxrmtzx.cn:90/live/zhpd.m3u8
-#EXTINF:-1,凤凰中文___1280x720_2.606
+#EXTINF:-1,CGTN___1280x720_2.606
 http://pi.0472.org/tv/cbn.php?id=xfjcHD$LR•IPV4『线路40』
 #EXTINF:-1,凤凰中文___1920x1080_1.310
 http://60.164.128.167:8029/rtp/239.255.30.50:8231
-#EXTINF:-1,凤凰资讯___1280x720_2.149
+#EXTINF:-1,中天娱乐___1280x720_2.149
 http://61.221.215.25:8800/hls/47/index.m3u8
 #EXTINF:-1,凤凰资讯___1920x1080_1.684
 http://60.164.128.167:8029/rtp/239.255.30.70:8231$LR•IPV4『线路155』
@@ -371,9 +371,9 @@ http://120.78.6.151:8968/douyu.php?id=3928
 http://120.78.6.151:8968/douyu.php?id=434971
 #EXTINF:-1,华语经典✔原___1280x720_0.906
 http://maomao.kandiantv.cn/douyu1.php?id=434971
-#EXTINF:-1,南京十八___1920x1080_0.718
+#EXTINF:-1,CCTV_13___1920x1080_0.718
 http://live.nbs.cn/channels/njtv/sbpd/500k.m3u8?zjiangsd
-#EXTINF:-1,南京十八___1920x1080_1.082
+#EXTINF:-1,CCTV_13___1920x1080_1.082
 http://live.nbs.cn/channels/njtv/sbpd/m3u8:500k/live.m3u8
 #EXTINF:-1,南京教科___1280x720_0.542
 http://live.nbs.cn/channels/njtv/jkpd/nbs06.m3u8
