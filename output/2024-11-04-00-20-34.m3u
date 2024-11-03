@@ -275,14 +275,6 @@ http://live.adultiptv.net/threesome.m3u8
 http://l2.weihai.tv:8081/hls/x8b19NoyEG.m3u8
 #EXTINF:-1,X战警电影___1920x1080_1.097
 http://jiaojirentv.top/2020/dy.php?id=9651304
-#EXTINF:-1,Аист ТВ___1920x1080_1.487
-http://live2-aisttv.cdnvideo.ru/aisttv2/aisttv.sdp/playlist.m3u8
-#EXTINF:-1,Губерния (Самара) (576p)___1024x576_1.874
-http://live.guberniatv.cdnvideo.ru/guberniatv/guberniatv.sdp/playlist.m3u8
-#EXTINF:-1,ТКР (Рязань) (1080p) [Not 24/7]___1280x720_2.427
-http://live.tkr.cdnvideo.ru/tkr/tkr.sdp/playlist.m3u8
-#EXTINF:-1,Толк HD___1280x720_2.127
-http://live-tolknews.cdnvideo.ru/tolknews/stream/playlist.m3u8
 #EXTINF:-1,「山西」晋中新闻___1920x1080_2.709
 http://jzlive.jztvnews.com:83/live/mount_for_ts/jzzh.m3u8?zshanxd
 #EXTINF:-1,「河南」巩义新闻综合___1920x1080_0.456
@@ -399,14 +391,11 @@ http://tianhewan.top/ZIPP.php?url=http://211.72.65.236:8526/.m3u8
 http://tvpull.dxhmt.cn:9081/tv/11122-1.m3u8
 #EXTINF:-1,乌鲁木齐新闻综合___850x480_0.476
 http://hls-xjhsy.sobeylive.com/xjwlmqapp2019/xwzh.m3u8
-#EXTINF:-1,乌鲁木齐维语综合___850x480_0.443
-http://hls-xjhsy.sobeylive.com/xjwlmqapp2019/wy.m3u8
 #EXTINF:-1,乐至综合___1920x1080_0.886
 http://175.155.106.72:89/live1/live1.m3u8?zsicd
 #EXTINF:-1,乐至综合频道___1920x1080_0.957
 http://175.155.106.72:89/live1/live1.m3u8
-#EXTINF:-1,乘着火车看中国___1920x1080_0.316
-http://hls.cntv.myhwcdn.cn/asp/hls/4000/0303000a/3/default/2b0f397ed9d948eb9fac38d73cde241b/4000.m3u8
+
 #EXTINF:-1,云南卫视___720x576_1.409
 http://vod.hnqczh.cn:808/hls/38/index.m3u8
 #EXTINF:-1,云南卫视___720x576_3.169
@@ -711,22 +700,6 @@ http://live.kanwz.net/ggpd/sd/live.m3u8?zningxd
 http://live.kanwz.net/ggpd/sd/live.m3u8
 #EXTINF:-1,吴忠综合___1280x720_1.663
 http://live.kanwz.net/zhpd/sd/live.m3u8
-#EXTINF:-1,周星驰___1088x816_0.850
-http://204bae1.123nat.com:35455/yy/38670875
-#EXTINF:-1,周星驰___1280x720_0.616
-http://159.75.85.63:35455/yy/1354658049
-#EXTINF:-1,周星驰___1280x720_0.790
-http://204bae1.123nat.com:35455/yy/1354889048
-#EXTINF:-1,周星驰___1280x720_0.853
-http://204bae1.123nat.com:35455/yy/1354658049
-#EXTINF:-1,周星驰___1920x1080_1.969
-http://diyp.zxxoo.work/douyu/122402
-#EXTINF:-1,周星驰___1920x1080_2.419
-http://huanqiuzhibo.cn/manifest/douyu.php?id=122402
-#EXTINF:-1,周星驰___800x600_0.788
-http://204bae1.123nat.com:35455/yy/29945997
-#EXTINF:-1,周星驰电影___1280x720_1.544
-http://120.78.6.151:8968/yy.php?id=1354658049
 #EXTINF:-1,周润发电影___1280x720_1.008
 http://120.78.6.151:8968/yy.php?id=1354930961
 #EXTINF:-1,哆啦A梦___640x496_1.431
@@ -1083,22 +1056,6 @@ http://1yp7hc5p.live.sxmty.com/live/hls/bff8529922344209985b6e49baa9555a/efa2543
 http://allinone.netsite.cc/douyu/434971
 #EXTINF:-1,怡寶影视___1280x720_0.929
 http://120.77.28.4:8648/douyu.php?id=434971
-#EXTINF:-1,恐怖剧场___1280x720_1.068
-http://allinone.netsite.cc/douyu/96577
-#EXTINF:-1,恐怖影院___1920x1080_1.253
-http://120.77.28.4:8648/douyu.php?id=218859
-#EXTINF:-1,恐怖惊悚___1280x720_0.975
-http://maomao.kandiantv.cn/douyu1.php?id=96577
-#EXTINF:-1,恐怖惊悚✔原___1280x720_1.381
-http://159.75.85.63:35455/douyu/96577
-#EXTINF:-1,恐怖电影___1920x1080_1.415
-http://allinone.netsite.cc/douyu/218859
-#EXTINF:-1,恐怖经典___1280x720_1.798
-http://120.78.6.151:8968/douyu.php?id=1165374
-#EXTINF:-1,恐怖鬼怪___1280x720_2.155
-http://120.77.28.4:8648/douyu.php?id=1165374
-#EXTINF:-1,惊悚影视___1280x720_1.242
-http://120.77.28.4:8648/douyu.php?id=96577
 #EXTINF:-1,成龙___800x600_0.626
 http://204bae1.123nat.com:35455/yy/34460526
 #EXTINF:-1,成龙电影___1920x1080_0.890
@@ -1269,14 +1226,6 @@ http://l.cztvcloud.com/channels/lantian/SXsongyang1/720p.m3u8
 http://l.cztvcloud.com/channels/lantian/SXsongyang1/720p.m3u8?zzhed
 #EXTINF:-1,林州综合___1920x1080_0.466
 http://tvpull.dxhmt.cn:9081/tv/10581-1.m3u8
-#EXTINF:-1,林正英___1280x720_0.593
-http://159.75.85.63:35455/yy/1351505899
-#EXTINF:-1,林正英___1280x720_0.604
-http://204bae1.123nat.com:35455/yy/1351505899
-#EXTINF:-1,林正英___1920x1080_1.189
-http://diyp.zxxoo.work/douyu/7356023
-#EXTINF:-1,林正英___800x600_3.496
-http://204bae1.123nat.com:35455/yy/30668277
 #EXTINF:-1,梁家辉___1920x1038_1.061
 http://diyp.zxxoo.work/huya/11342429
 #EXTINF:-1,梁家辉___1920x1038_1.464
@@ -1291,8 +1240,6 @@ http://183.196.87.176:880/hls/57/index.m3u8
 http://121.24.98.154:8090/hls/45/index.m3u8
 #EXTINF:-1,梨园频道___720x576_1.304
 http://121.24.98.232:8090/hls/45/index.m3u8
-#EXTINF:-1,梵净山___1920x1080_0.803
-http://hls.cntv.myhwcdn.cn/asp/hls/4000/0303000a/3/default/b9571df1181c4422a83901e827519fe6/4000.m3u8
 #EXTINF:-1,横州综合频道___1920x1080_1.680
 http://live.nnnews.net/video/s10004-hztv-hd/index.m3u8
 #EXTINF:-1,橙記港剧___1280x720_0.925
@@ -2277,8 +2224,6 @@ http://222.218.158.76:8181/tsfile/live/0111_1.m3u8
 http://118.122.189.74:9901/tsfile/live/0111_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1,西藏卫视___720x576_3.928
 http://222.218.158.104:8181/tsfile/live/0111_1.m3u8
-#EXTINF:-1,西藏藏语卫视___1920x1080_3.498
-http://php.jdshipin.com:8880/xztv.php?id=zy
 #EXTINF:-1,解说___1280x720_0.747
 http://diyp.zxxoo.work/huya/18632116
 #EXTINF:-1,解说___1920x1080_0.652
@@ -2559,18 +2504,8 @@ http://live.zmmek.com:90/live/zhxw.m3u8
 http://120.77.28.4:8648/douyu.php?id=7254536
 #EXTINF:-1,高邮综合___1920x1080_0.729
 http://gaoyou-tv-hls.cm.jstv.com/gaoyou-tv/gaoyouxw.m3u8
-#EXTINF:-1,鬼吹灯之云南虫谷___1920x804_1.031
-http://cfss.cc/cdn/hy/11352898.flv
-#EXTINF:-1,鬼吹灯之精绝古城___848x480_0.642
-http://cfss.cc/cdn/hy/11352871.flv
-#EXTINF:-1,鬼吹灯之龙岭迷窟___1920x726_1.722
-http://cfss.cc/cdn/hy/29465863.flv
-#EXTINF:-1,鬼片恐怖✔原___1536x864_0.737
-http://maomao.kandiantv.cn/douyu1.php?id=2935323
 #EXTINF:-1,魅力足球___1280x720_1.315
 http://dd.ddzb.fun/php/migu.php?id=mlzq
-#EXTINF:-1,鱼宝恐怖✔原___1280x720_0.879
-http://maomao.kandiantv.cn/douyu1.php?id=1165374
 #EXTINF:-1,鹿邑新闻频道___1920x1080_0.583
 http://tvpull.dxhmt.cn:9081/tv/11628-1.m3u8?zhend
 #EXTINF:-1,鹿鼎记-周星驰版___1280x720_1.127
@@ -2701,8 +2636,6 @@ https://fox-foxnewsnow-samsungus.amagi.tv/playlist720p.m3u8
 https://hls-mycdn08724960135.cdnvideo.ru/mycdn08724960135/stream1/playlist.m3u8
 #EXTINF:-1,Inter TV (720p)___1920x1080_2.280
 https://open.http.mp.streamamg.com/p/3001560/sp/300156000/playManifest/entryId/0_xmkk2kjr/flavorIds/0_zlbr85f8,0_zlbr85f8,0_noewhew2/format/applehttp/protocol/https/a.m3u8
-#EXTINF:-1,JUFE-104___1280x720_3.941
-https://siwazywcdn2.com:5278/zhongwenzimu/4TrvxJeg/index.m3u8
 #EXTINF:-1,L'Equipe Live 1 (1080p)___1920x1080_1.666
 https://d3awaj0f2u3w26.cloudfront.net/4/media.m3u8
 #EXTINF:-1,L'Equipe Live 2 (1080p)___1920x1080_2.384
@@ -2713,8 +2646,6 @@ https://tvshops.bonus-tv.ru/cdn/shop24/playlist.m3u8
 https://pchlslivesw.lotteimall.com/live/livestream/lotteimalllive_mp4.m3u8
 #EXTINF:-1,Lotte OneTV (720p)___1280x720_2.393
 https://onetvhlslive.lotteimall.com/lotteonetvlive/lotteonetvlive.mp4.m3u8
-#EXTINF:-1,MIAA-320___1280x720_3.793
-https://siwazywcdn2.com:5278/zhongwenzimu/4idREMlz/index.m3u8
 #EXTINF:-1,Nizhniy Novgorod 24___1280x720_3.061
 https://live-vestinn.cdnvideo.ru/vestinn/nn24-khl/playlist.m3u8
 #EXTINF:-1,PTC Chakde (720p)___1920x1080_3.528
@@ -2733,8 +2664,6 @@ https://pi.0472.org/hls/fztd.m3u8
 https://pi.0472.org/hls/dsjc.m3u8
 #EXTINF:-1,SITV金色学堂___1280x720_2.384
 https://pi.0472.org/hls/jspd.m3u8
-#EXTINF:-1,SSNI-658B___1280x720_3.216
-https://siwazywcdn2.com:5278/zhongkouwei/WBdOE3qp/index.m3u8
 #EXTINF:-1,San Marino RTV Sport (720p)___1280x720_4.445
 https://d2hrvno5bw6tg2.cloudfront.net/smrtv-ch02/smil:ch-02.smil/master.m3u8
 #EXTINF:-1,TV BRICS Russian___1920x1080_3.053
@@ -2749,28 +2678,6 @@ https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8
 https://lightning-tracesport-samsungau.amagi.tv/playlist1080p.m3u8
 #EXTINF:-1,Zhejiang TV International___1920x1080_0.713
 https://ali-m-l.cztv.com/channels/lantian/channel10/1080p.m3u8
-#EXTINF:-1,ipx-511___1280x720_4.363
-https://siwazywcdn2.com:5278/ribenyouma/NkRh5zW8/index.m3u8
-#EXTINF:-1,ssis-118梦乃___1280x720_4.506
-https://siwazywcdn2.com:5278/zhongwenzimu/5yvSxVeg/index.m3u8
-#EXTINF:-1,Муз союз (576p)___1920x1080_2.690
-https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz2/muzsoyuz.6fw0-58xp-acts-esy0/playlist.m3u8
-#EXTINF:-1,НТС (Севастополь) (1080p) [Not 24/7]___1920x1080_2.953
-https://peqk71plnjy.a.trbcdn.net/livemaster/w4kz7pki62_nts_tv/playlist.m3u8
-#EXTINF:-1,Надежда (720p)___1280x720_3.676
-https://live-tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8
-#EXTINF:-1,Ратник (1080p) [Geo-blocked]___1920x1080_4.136
-https://live-ratnik.cdnvideo.ru/ratnik/ratnik.sdp/playlist.m3u8
-#EXTINF:-1,Союз (576p)___1920x1080_2.844
-https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz/soyuz/playlist.m3u8
-#EXTINF:-1,ТНВ-Планета (Казань)___1024x576_3.741
-https://planeta.mediacdn.ru/cdn/tnvplanet/playlist.m3u8
-#EXTINF:-1,Телеканал Краснодар___1920x1080_3.001
-https://live-tvkrasnodar.cdnvideo.ru/tvkrasnodar/tvkrasnodar.sdp/playlist.m3u8
-#EXTINF:-1,Точка ТВ___720x576_3.454
-https://tochkatv-live.cdnvideo.ru/tochkatv2/tochkatv-sd.stream/playlist.m3u8
-#EXTINF:-1,Тюменское время___1920x1080_3.458
-https://hls-sibinformburo.cdnvideo.ru/sibinformburo-srt/sibinformburo/playlist.m3u8
 #EXTINF:-1,▶️(2024)异形寄生:起源___1920x808_4.157
 https://api.heimuer.app/play/3e9be3a5080c46449dbc355c9cb8baec.m3u8
 #EXTINF:-1,▶️魔戒二部曲：雙城奇謀___1920x800_3.284
@@ -3227,5 +3134,3 @@ https://lunbo.freetv.top/yy/28265277
 https://l.cztvcloud.com/channels/lantian/SXlongyou1/720p.m3u8
 #EXTINF:-1,龙游生活娱乐频道___1280x720_0.527
 https://l.cztvcloud.com/channels/lantian/SXlongyou2/720p.m3u8
-#EXTINF:-1,🐼直播熊猫🥇___1280x720_2.784
-https://gcwbndali.v.myalicdn.com/gcwbnd/ipanda1000_2/index.m3u8
