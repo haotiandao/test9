@@ -13,7 +13,7 @@ playlist_file = "playlists/"
 m3u8_file_path = "output/"
 
 filter_url_arr = ['122.152.202.33','stream1.freetv.fun','cnstream.top','goodiptv','jlntv','zjrtv.vip','epg.pw','21dtv.com/songs','sd5hxc','bs3/video-hls',
-'gcalic.v.myalicdn.com/gc/','gctxyc.liveplay.myqcloud.com','bizcommon.alicdn.com'] # 剔除一些特定的直播源，因它们不是开放的静态直播源，或者其他一些不想要的
+'gcalic.v.myalicdn.com/gc/','gctxyc.liveplay.myqcloud.com','bizcommon.alicdn.com','dd.ddzb.fun'] # 剔除一些特定的直播源，因它们不是开放的静态直播源，或者其他一些不想要的
 
 filter_url_arr_1 = ['live.metshop.top'] # 针对斗鱼，虎牙的直播源做特殊过滤，仅保留电影相关的
 
