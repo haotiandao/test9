@@ -23,9 +23,9 @@ download_video_time = 4 # 使用ffmpeg下载多少秒直播源的视频时长，
 
 download_video_length = download_video_time * 70 # 使用ffmpeg下载{download_video_time}秒直播源的视频时长，如果视频文件的大小，小于这个值，说明下载很慢，那么剔除掉，一般1秒钟需要有70KB才不卡顿
 
-timeout = download_video_time + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
+timeout = download_video_time   # 使用ffmpeg下载{download_video_time}秒直播源的视频，最大允许的耗时秒数，超过的终止请求。超时时间太短可能没法获取视频分辨率，不建议在调整该值
 
-download_video_use_time = timeout + 0.5  # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
+download_video_use_time = timeout   # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
 
 max_bitrate = 10000  # bitrate高于10000，容易卡顿，故剔除掉
 
