@@ -41,8 +41,14 @@ https://0472.org/hls/cgtnd.m3u8
 https://english-livetx.cgtn.com/hls/yypdjlctzb_hd.m3u8
 #EXTINF:-1,CGTN阿语___1920x1080_3.494
 https://0472.org/hls/cgtna.m3u8
+#EXTINF:-1,CCTV第一剧场___1920x1080_1.718
+http://58.19.38.162:9901/tsfile/live/1035_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1,CHC动作电影___1280x720_3.027
 https://pi.0472.org/chc/dz.m3u8
+#EXTINF:-1,CHC影迷电影___1920x1080_3.295
+http://218.76.32.193:9901/tsfile/live/1019_1.m3u8
+#EXTINF:-1,凤凰卫视___1920x1080_1.761
+http://211.72.65.236:8576/.m3u8
 #EXTINF:-1,香港卫视___720x576_1.300
 http://zhibo.hkstv.tv/livestream/mutfysrq.flv#http://stream.qhbtv.com/adws/sd/live.m3u8
 #EXTINF:-1,香港卫视___720x576_1.588
@@ -65,8 +71,6 @@ http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8?wsSession=3c732f93c14e1b
 https://pi.0472.org/tv/aoya.php?auth=202311030915
 #EXTINF:-1,澳视澳门___1280x720_2.627
 https://pi.0472.org/tv/asam.php?auth=202311030915
-#EXTINF:-1,新加坡中文台___1280x720_1.849
-https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8?zshijd
 #EXTINF:-1,亚洲卫视___1920x1080_1.484
 https://play-hsbj.vzan.com/slowlive/821481626725612417/live.m3u8?zbid=2046370057&tpid=330913109&type=0$IPV4
 #EXTINF:-1,亚洲卫视___1920x1080_1.670
