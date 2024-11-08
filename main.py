@@ -335,7 +335,7 @@ def main(playlist_file, m3u8_file_path):
                 idx = idx + 1
                 new_urls.append((url, host_name, tv_name, idx))
 
-    new_sort_urls = sorted(new_urls, key=lambda d:(d[1],d[2]))  # 按照 host_name tv_name 排序
+    new_sort_urls = sorted(new_urls, key=lambda d:(d[2],d[1],d[0]))  # 按照 tv_name host_name url 排序
 
     # 再新建一个m3u文件来存储排序后的
     new_output_file = (
